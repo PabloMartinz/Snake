@@ -4,6 +4,7 @@
  */
 package com.mycompany.snake;
 
+import java.awt.Graphics;
 import javax.swing.Timer;
 
 /**
@@ -12,9 +13,10 @@ import javax.swing.Timer;
  */
 public class Board extends javax.swing.JPanel {
     
-    public static final int NUM_ROWS = 15;
-    public static final int NUM_COLS = 15;
+    public static final int NUM_ROWS = 16;
+    public static final int NUM_COLS = 16;
     private Timer timer;
+    private Snake snake;
     /**
      * Creates new form Board
      */
@@ -32,6 +34,8 @@ public class Board extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setBackground(new java.awt.Color(204, 204, 204));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -45,7 +49,22 @@ public class Board extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void myInit(){
+        snake = new Snake(Direction.RIGHT);
+        
     }
+    
+    protected void paintComponent(Graphics g){
+        snake.paintSnake(g, squareWidth(), squareHeight());
+    }
+    
+    public int squareWidth() {
+        return getWidth() / Board.NUM_COLS;
+    }
+    
+    public int squareHeight() {
+        return getHeight() / Board.NUM_ROWS;
+    }
+    
 //    private boolean canMove(int row,int col){
 //        
 //    }

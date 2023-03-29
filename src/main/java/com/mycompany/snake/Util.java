@@ -15,30 +15,24 @@ public class Util {
     private int row;
     private int col;
     
-    public static void drawSquare(Graphics g, int row, int col){
-        Color colors[] = {new Color(0, 0, 0),
-            new Color(204, 102, 102)};
-        int x = col * squareWidth();
-        int y = row * squareHeight();
-        Color color = colors[shape.ordinal()];
+    public static void drawSquare(Graphics g, int row, int col, int squareWidth, int squareHeight, SquareType squareType){
+        Color colors[] = {new Color(0, 255, 0),new Color(0, 128, 255)};
+        int x = col * squareWidth;
+        int y = row * squareHeight;
+        Color color = colors[squareType.ordinal()];
         g.setColor(color);
-        g.fillRect(x + 1, y + 1, squareWidth() - 2,
-                squareHeight() - 2);
+        g.fillRect(x + 1, y + 1, squareWidth - 2,
+                squareHeight - 2);
         g.setColor(color.brighter());
-        g.drawLine(x, y + squareHeight() - 1, x, y);
-        g.drawLine(x, y, x + squareWidth() - 1, y);
+        g.drawLine(x, y + squareHeight - 1, x, y);
+        g.drawLine(x, y, x + squareWidth - 1, y);
         g.setColor(color.darker());
-        g.drawLine(x + 1, y + squareHeight() - 1,
-                x + squareWidth() - 1, y + squareHeight() - 1);
-        g.drawLine(x + squareWidth() - 1,
-                y + squareHeight() - 1,
-                x + squareWidth() - 1, y + 1);
-    }
-    public int squareWidth() {
-        return getWidth() / Board.NUM_COLS;
+        g.drawLine(x + 1, y + squareHeight - 1,
+                x + squareWidth - 1, y + squareHeight - 1);
+        g.drawLine(x + squareWidth - 1,
+                y + squareHeight - 1,
+                x + squareWidth - 1, y + 1);
     }
     
-    public int squareHeight() {
-        return getHeight() / Board.NUM_ROWS;
-    }
+
 }
