@@ -26,6 +26,16 @@ public class Snake {
             this.nodes.add(node);
         }
     }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public List<Node> getNodes() {
+        return nodes;
+    }
+    
+    
     
     public void paintSnake(Graphics g,int squareWidth, int squareHeight){
         for(int i =0;i < nodes.size() ;i++){
@@ -39,4 +49,15 @@ public class Snake {
         }
     }
     
+//    private boolean canMove(int row, int col, Snake snake){
+//        
+//    }
+    
+    public void moveSnake(Snake snake){
+        Node newNode = new Node(0,0);
+        newNode.setRow(snake.getNodes().get(0).getRow());
+        newNode.setCol(snake.getNodes().get(0).getCol()+1);
+        snake.getNodes().remove(snake.getNodes().size()-1);
+        snake.getNodes().add(0, newNode);
+    }
 }

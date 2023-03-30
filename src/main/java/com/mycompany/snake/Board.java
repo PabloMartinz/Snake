@@ -5,6 +5,8 @@
 package com.mycompany.snake;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 /**
@@ -49,12 +51,24 @@ public class Board extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void myInit(){
-        snake = new Snake(Direction.RIGHT);
-        
+        snake = new Snake(Direction.RIGHT); 
+        timer = new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                tick();
+            }
+        });
+        timer.start();
     }
     
     protected void paintComponent(Graphics g){
+        super.paintComponent(g);
         snake.paintSnake(g, squareWidth(), squareHeight());
+    }
+    
+    private void tick(){
+        snake.moveSnake(snake);
+        repaint();
     }
     
     public int squareWidth() {
