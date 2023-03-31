@@ -7,6 +7,8 @@ package com.mycompany.snake;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.Timer;
 
 /**
@@ -19,6 +21,7 @@ public class Board extends javax.swing.JPanel {
     public static final int NUM_COLS = 16;
     private Timer timer;
     private Snake snake;
+    private MyKeyAdapter myKeyAdapter;
     /**
      * Creates new form Board
      */
@@ -52,7 +55,11 @@ public class Board extends javax.swing.JPanel {
 
     private void myInit(){
         snake = new Snake(Direction.RIGHT); 
-        timer = new Timer(500, new ActionListener() {
+        myKeyAdapter = new MyKeyAdapter();
+        addKeyListener(myKeyAdapter);
+        setFocusable(true);
+        
+        timer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tick();
@@ -67,8 +74,45 @@ public class Board extends javax.swing.JPanel {
     }
     
     private void tick(){
-        snake.moveSnake(snake);
-        repaint();
+        if (snake.canMove(snake)) {
+            snake.moveSnake(snake);
+            repaint();
+        } else{
+            timer.stop();
+        }
+        
+    }
+    
+    class MyKeyAdapter extends KeyAdapter {
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_RIGHT:
+                    if (snake.getDirection() != Direction.LEFT) {
+                        snake.setDirection(Direction.RIGHT);
+                    }
+                    break;
+                case KeyEvent.VK_LEFT:
+                    if (snake.getDirection() != Direction.RIGHT) {
+                        snake.setDirection(Direction.LEFT);
+                    }
+                    break;
+                case KeyEvent.VK_UP:
+                    if (snake.getDirection() != Direction.DOWN) {
+                        snake.setDirection(Direction.UP);
+                    }
+                    break;
+                case KeyEvent.VK_DOWN:
+                    if (snake.getDirection() != Direction.UP) {
+                        snake.setDirection(Direction.DOWN);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            repaint();
+        }
     }
     
     public int squareWidth() {
