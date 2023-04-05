@@ -10,7 +10,7 @@ package com.mycompany.snake;
  */
 public class SpecialFood extends Food {
     
-    public SpecialFood(int row, int col){
-        super(row,col);
+    public SpecialFood(Snake snake){
+        super(snake);
     }
 }

@@ -40,8 +40,6 @@ public class Snake {
     }
     
     
-    
-    
     public void paintSnake(Graphics g,int squareWidth, int squareHeight){
         for(int i =0;i < nodes.size() ;i++){
             Node currentNode = nodes.get(i);
@@ -57,10 +55,10 @@ public class Snake {
     public boolean canMove(Snake snake){
         Node checkNode = snake.getNodes().get(0);
         
-        if(checkNode.getRow()+1 >= Board.NUM_ROWS || checkNode.getRow()-1 < 0){
+        if(checkNode.getRow() >= Board.NUM_ROWS || checkNode.getRow() < 0){
             return false;
         }
-        if(checkNode.getCol()+1 >= Board.NUM_COLS || checkNode.getCol()-1 < 0){
+        if(checkNode.getCol() >= Board.NUM_COLS || checkNode.getCol() < 0){
             return false;
         }
         if(colidesWithSnake(snake)){
@@ -139,6 +137,22 @@ public class Snake {
         }
         return false;
         
+    }
+    
+    public boolean canPaintFood(int foodRow, int foodCol){
+        for(Node node: nodes){
+            if(foodRow == node.getRow() && foodCol == node.getCol()){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean hasEaten(Food food){
+        if(food.getRow() == nodes.get(0).getRow() && food.getCol() == nodes.get(0).getCol()){
+            return true;
+        }
+        return false;
     }
     
 }

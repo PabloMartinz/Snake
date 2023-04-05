@@ -5,6 +5,7 @@
 package com.mycompany.snake;
 
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -21,6 +22,8 @@ public class Board extends javax.swing.JPanel {
     public static final int NUM_COLS = 16;
     private Timer timer;
     private Snake snake;
+    private Food food;
+    private boolean oneFood = true;
     private MyKeyAdapter myKeyAdapter;
     /**
      * Creates new form Board
@@ -55,11 +58,12 @@ public class Board extends javax.swing.JPanel {
 
     private void myInit(){
         snake = new Snake(Direction.RIGHT); 
+        food = new Food(snake);
         myKeyAdapter = new MyKeyAdapter();
         addKeyListener(myKeyAdapter);
         setFocusable(true);
         
-        timer = new Timer(100, new ActionListener() {
+        timer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tick();
@@ -70,7 +74,10 @@ public class Board extends javax.swing.JPanel {
     
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        snake.paintSnake(g, squareWidth(), squareHeight());
+        snake.paintSnake(g, squareWidth(), squareHeight());      
+        food.paintFood(g, food, squareWidth(), squareHeight(), snake);
+        
+        Toolkit.getDefaultToolkit().sync();
     }
     
     private void tick(){
@@ -79,6 +86,10 @@ public class Board extends javax.swing.JPanel {
             repaint();
         } else{
             timer.stop();
+        }
+        
+        if (snake.hasEaten(food)) {
+            food = new Food(snake);
         }
         
     }

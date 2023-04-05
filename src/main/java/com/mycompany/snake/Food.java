@@ -4,16 +4,42 @@
  */
 package com.mycompany.snake;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author alu10772822
  */
 public class Food extends Node {
-    private int row;
-    private int col;
 
-    public Food(int row, int col) {
-        super(row,col);
+    public Food(Snake snake) {
+        super(0,0);
+        int row = generateRandomRow();
+        int col = generateRandomCol();
+        while(!snake.canPaintFood(row, col)){
+            row = generateRandomRow();
+            col = generateRandomCol();
+        }
+        setRow(row);
+        setCol(col);
     }
     
+    public void paintFood(Graphics g, Food food, int squareWidth, int squareHeight, Snake snake){
+        int row = food.getRow();
+        int col = food.getCol();
+        
+        Util.drawSquare(g, row, col, squareWidth, squareHeight, SquareType.FOOD);
+    }
+    
+    
+    
+    public int generateRandomRow(){
+        int randomRow = (int)(Math.random()*(Board.NUM_ROWS+1));
+        return randomRow;
+    }
+       public int generateRandomCol(){
+        int randomCol = (int)(Math.random()*(Board.NUM_COLS+1));
+        return randomCol;
+    }
+        
 }
