@@ -90,6 +90,7 @@ public class Board extends javax.swing.JPanel {
         
         if (snake.hasEaten(food)) {
             food = new Food(snake);
+            snake.incrementSnake(snake, 1);
         }
         
     }

@@ -155,4 +155,8 @@ public class Snake {
         return false;
     }
     
+    public void incrementSnake(Snake snake,int incrementer){
+        
+    }
+    
 }
