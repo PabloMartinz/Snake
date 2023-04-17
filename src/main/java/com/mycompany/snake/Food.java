@@ -34,11 +34,11 @@ public class Food extends Node {
     
     
     public int generateRandomRow(){
-        int randomRow = (int)(Math.random()*(Board.NUM_ROWS+1));
+        int randomRow = (int)(Math.random()*(Board.NUM_ROWS));
         return randomRow;
     }
        public int generateRandomCol(){
-        int randomCol = (int)(Math.random()*(Board.NUM_COLS+1));
+        int randomCol = (int)(Math.random()*(Board.NUM_COLS));
         return randomCol;
     }
         

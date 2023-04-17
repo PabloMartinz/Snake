@@ -63,7 +63,7 @@ public class Board extends javax.swing.JPanel {
         addKeyListener(myKeyAdapter);
         setFocusable(true);
         
-        timer = new Timer(500, new ActionListener() {
+        timer = new Timer(200, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tick();

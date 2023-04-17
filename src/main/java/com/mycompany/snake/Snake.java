@@ -155,8 +155,13 @@ public class Snake {
         return false;
     }
     
-    public void incrementSnake(Snake snake,int incrementer){
+    public void incrementSnake(Snake snake, int incrementer) {
+        Node lastNode = snake.getNodes().get(snake.getNodes().size() - 1);
+        Node newNode = new Node(lastNode.getRow(), lastNode.getCol());
         
+        for (int i = 0; i < incrementer; i++) {
+            snake.nodes.add(newNode);
+        }
     }
     
 }
