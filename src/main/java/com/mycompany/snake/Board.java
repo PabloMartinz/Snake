@@ -23,7 +23,7 @@ public class Board extends javax.swing.JPanel {
     private Timer timer;
     private Snake snake;
     private Food food;
-    private boolean oneFood = true;
+    private FoodFactory foodFactory;
     private MyKeyAdapter myKeyAdapter;
     /**
      * Creates new form Board
@@ -58,12 +58,13 @@ public class Board extends javax.swing.JPanel {
 
     private void myInit(){
         snake = new Snake(Direction.RIGHT); 
-        food = new Food(snake);
+        foodFactory = new FoodFactory();
+        food = foodFactory.getFood(snake);
         myKeyAdapter = new MyKeyAdapter();
         addKeyListener(myKeyAdapter);
         setFocusable(true);
         
-        timer = new Timer(200, new ActionListener() {
+        timer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tick();
@@ -76,7 +77,6 @@ public class Board extends javax.swing.JPanel {
         super.paintComponent(g);
         snake.paintSnake(g, squareWidth(), squareHeight());      
         food.paintFood(g, food, squareWidth(), squareHeight(), snake);
-        
         Toolkit.getDefaultToolkit().sync();
     }
     
@@ -89,11 +89,12 @@ public class Board extends javax.swing.JPanel {
         }
         
         if (snake.hasEaten(food)) {
-            food = new Food(snake);
+            food = foodFactory.getFood(snake);
             snake.incrementSnake(snake, 1);
         }
         
     }
+
     
     class MyKeyAdapter extends KeyAdapter {
 
@@ -134,10 +135,6 @@ public class Board extends javax.swing.JPanel {
     public int squareHeight() {
         return getHeight() / Board.NUM_ROWS;
     }
-    
-//    private boolean canMove(int row,int col){
-//        
-//    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
