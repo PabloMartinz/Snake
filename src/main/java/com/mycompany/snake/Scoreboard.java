@@ -8,13 +8,29 @@ package com.mycompany.snake;
  *
  * @author alu10772822
  */
-public class Scoreboard extends javax.swing.JPanel {
+public class Scoreboard extends javax.swing.JPanel implements Incrementer, GetScorer{
+    private int score;
 
     /**
      * Creates new form Scoreboard
      */
     public Scoreboard() {
         initComponents();
+        myInit();
+    }
+    public void myInit() {
+        resetScore();
+    }
+    
+    public void resetScore() {
+        score = 0;
+        labelScore.setText("0");
+        labelName.setText("Pablo");
+    }
+    
+    public void incrementScore(int increment) {
+        score += increment;
+        labelScore.setText("" + score);
     }
 
     /**
@@ -26,19 +42,26 @@ public class Scoreboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        labelName = new javax.swing.JLabel();
+        labelScore = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 102, 255));
+
+        labelName.setText("name");
+        add(labelName);
+
+        labelScore.setText("Score");
+        add(labelScore);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelScore;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public int getScore() {
+    return score;
+    }
 }

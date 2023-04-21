@@ -35,4 +35,9 @@ public class SpecialFood extends Food {
     public int getIncrementer(){
         return 1;
     }
+    
+    @Override
+    public int getPoints(){
+        return 30;
+    }
 }

@@ -44,4 +44,8 @@ public class Food extends Node {
     public int getIncrementer(){
         return 1;
     }
+    
+    public int getPoints(){
+        return 10;
+    }
 }

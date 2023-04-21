@@ -25,6 +25,16 @@ public class Board extends javax.swing.JPanel {
     private Food food;
     private FoodFactory foodFactory;
     private MyKeyAdapter myKeyAdapter;
+    private Incrementer incrementer;
+    private GetScorer getScorer;
+    
+    public void setIncrementer(Incrementer incrementer) {
+        this.incrementer = incrementer;
+    }
+    
+    public void setGetScorer(GetScorer getScorer) {
+        this.getScorer = getScorer;
+    }
     /**
      * Creates new form Board
      */
@@ -60,6 +70,7 @@ public class Board extends javax.swing.JPanel {
         snake = new Snake(Direction.RIGHT); 
         foodFactory = new FoodFactory();
         food = foodFactory.getFood(snake);
+        incrementer.resetScore();
         myKeyAdapter = new MyKeyAdapter();
         addKeyListener(myKeyAdapter);
         setFocusable(true);
@@ -91,8 +102,8 @@ public class Board extends javax.swing.JPanel {
         if (snake.hasEaten(food)) {
             food = foodFactory.getFood(snake);
             snake.incrementSnake(snake, 1);
+            incrementer.incrementScore(food.getPoints());
         }
-        
     }
 
     
