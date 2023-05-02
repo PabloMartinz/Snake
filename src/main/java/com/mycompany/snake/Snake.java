@@ -55,10 +55,16 @@ public class Snake {
     public boolean canMove(Snake snake){
         Node checkNode = snake.getNodes().get(0);
         
-        if(checkNode.getRow() >= Board.NUM_ROWS || checkNode.getRow() < 0){
+        if(checkNode.getRow()+1 >= Board.NUM_ROWS && snake.getDirection() == Direction.DOWN ){
             return false;
         }
-        if(checkNode.getCol() >= Board.NUM_COLS || checkNode.getCol() < 0){
+        if (checkNode.getRow()-1 < 0 && snake.getDirection() == Direction.UP) {
+            return false;
+        }
+        if(checkNode.getCol()+1 >= Board.NUM_COLS && snake.getDirection() == Direction.RIGHT){
+            return false;
+        }
+        if (checkNode.getCol()-1 < 0 && snake.getDirection() == Direction.LEFT) {
             return false;
         }
         if(colidesWithSnake(snake)){

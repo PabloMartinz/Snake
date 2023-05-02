@@ -33,7 +33,7 @@ public class SpecialFood extends Food {
     
     @Override
     public int getIncrementer(){
-        return 1;
+        return 3;
     }
     
     @Override

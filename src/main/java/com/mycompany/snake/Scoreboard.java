@@ -24,8 +24,8 @@ public class Scoreboard extends javax.swing.JPanel implements Incrementer, GetSc
     
     public void resetScore() {
         score = 0;
-        labelScore.setText("0");
-        labelName.setText("Pablo");
+        labelScore.setText("Score: 0");
+        labelName.setText(" Name: Pablo");
     }
     
     public void incrementScore(int increment) {

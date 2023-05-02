@@ -30,6 +30,7 @@ public class Board extends javax.swing.JPanel {
     
     public void setIncrementer(Incrementer incrementer) {
         this.incrementer = incrementer;
+        incrementer.resetScore();
     }
     
     public void setGetScorer(GetScorer getScorer) {
@@ -70,17 +71,20 @@ public class Board extends javax.swing.JPanel {
         snake = new Snake(Direction.RIGHT); 
         foodFactory = new FoodFactory();
         food = foodFactory.getFood(snake);
-        incrementer.resetScore();
         myKeyAdapter = new MyKeyAdapter();
         addKeyListener(myKeyAdapter);
         setFocusable(true);
         
-        timer = new Timer(100, new ActionListener() {
+        timer = new Timer(200, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tick();
             }
         });
+        
+    }
+    
+    public void initGame(){
         timer.start();
     }
     
@@ -100,9 +104,9 @@ public class Board extends javax.swing.JPanel {
         }
         
         if (snake.hasEaten(food)) {
-            food = foodFactory.getFood(snake);
-            snake.incrementSnake(snake, 1);
+            snake.incrementSnake(snake, food.getIncrementer());
             incrementer.incrementScore(food.getPoints());
+            food = foodFactory.getFood(snake);
         }
     }
 
