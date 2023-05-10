@@ -27,21 +27,98 @@ public class ConfigDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jlabLevel = new javax.swing.JLabel();
+        comboLevel = new javax.swing.JComboBox<>();
+        jbuttonStart = new javax.swing.JButton();
+        jlabName = new javax.swing.JLabel();
+        jtextfieldName = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jlabLevel.setText("Level:");
+        jlabLevel.setAlignmentX(0.5F);
+
+        comboLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Easy", "Normal", "Hard", "Secret" }));
+        comboLevel.setToolTipText("");
+        comboLevel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboLevelActionPerformed(evt);
+            }
+        });
+
+        jbuttonStart.setText("Start Game");
+        jbuttonStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbuttonStartActionPerformed(evt);
+            }
+        });
+
+        jlabName.setText("Name:");
+
+        jtextfieldName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtextfieldNameFocusLost(evt);
+            }
+        });
+        jtextfieldName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtextfieldNameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbuttonStart)
+                .addGap(47, 47, 47))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlabLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlabName))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtextfieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlabLevel)
+                    .addComponent(comboLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlabName)
+                    .addComponent(jtextfieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(jbuttonStart)
+                .addGap(42, 42, 42))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void comboLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLevelActionPerformed
+        ConfigData.instance.setLevel(comboLevel.getSelectedIndex());
+    }//GEN-LAST:event_comboLevelActionPerformed
+
+    private void jbuttonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonStartActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbuttonStartActionPerformed
+
+    private void jtextfieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtextfieldNameActionPerformed
+        
+    }//GEN-LAST:event_jtextfieldNameActionPerformed
+
+    private void jtextfieldNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtextfieldNameFocusLost
+        ConfigData.instance.setName(jtextfieldName.getText());
+    }//GEN-LAST:event_jtextfieldNameFocusLost
 
     /**
      * @param args the command line arguments
@@ -86,5 +163,10 @@ public class ConfigDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboLevel;
+    private javax.swing.JButton jbuttonStart;
+    private javax.swing.JLabel jlabLevel;
+    private javax.swing.JLabel jlabName;
+    private javax.swing.JTextField jtextfieldName;
     // End of variables declaration//GEN-END:variables
 }

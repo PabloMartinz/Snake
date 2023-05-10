@@ -16,7 +16,7 @@ import javax.swing.Timer;
  *
  * @author alu10772822
  */
-public class Board extends javax.swing.JPanel {
+public class Board extends javax.swing.JPanel implements InitGamer{
     
     public static final int NUM_ROWS = 16;
     public static final int NUM_COLS = 16;
@@ -27,6 +27,7 @@ public class Board extends javax.swing.JPanel {
     private MyKeyAdapter myKeyAdapter;
     private Incrementer incrementer;
     private GetScorer getScorer;
+    private int delay;
     
     public void setIncrementer(Incrementer incrementer) {
         this.incrementer = incrementer;
@@ -75,7 +76,7 @@ public class Board extends javax.swing.JPanel {
         addKeyListener(myKeyAdapter);
         setFocusable(true);
         
-        timer = new Timer(200, new ActionListener() {
+        timer = new Timer(delay, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tick();
@@ -85,6 +86,7 @@ public class Board extends javax.swing.JPanel {
     }
     
     public void initGame(){
+        timer.setDelay(delay);
         timer.start();
     }
     
@@ -110,6 +112,15 @@ public class Board extends javax.swing.JPanel {
         }
     }
 
+    @Override
+    public void continueGame() {
+        timer.start();
+    }
+    
+    public void pauseGame(){
+        timer.stop();
+    }
+
     
     class MyKeyAdapter extends KeyAdapter {
 
@@ -117,22 +128,22 @@ public class Board extends javax.swing.JPanel {
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_RIGHT:
-                    if (snake.getDirection() != Direction.LEFT) {
+                    if (snake.getDirection() != Direction.LEFT && snake.getDirection() != Direction.RIGHT) {
                         snake.setDirection(Direction.RIGHT);
                     }
                     break;
                 case KeyEvent.VK_LEFT:
-                    if (snake.getDirection() != Direction.RIGHT) {
+                    if (snake.getDirection() != Direction.RIGHT && snake.getDirection() != Direction.LEFT) {
                         snake.setDirection(Direction.LEFT);
                     }
                     break;
                 case KeyEvent.VK_UP:
-                    if (snake.getDirection() != Direction.DOWN) {
+                    if (snake.getDirection() != Direction.DOWN && snake.getDirection() != Direction.UP) {
                         snake.setDirection(Direction.UP);
                     }
                     break;
                 case KeyEvent.VK_DOWN:
-                    if (snake.getDirection() != Direction.UP) {
+                    if (snake.getDirection() != Direction.UP && snake.getDirection() != Direction.DOWN) {
                         snake.setDirection(Direction.DOWN);
                     }
                     break;
@@ -149,6 +160,23 @@ public class Board extends javax.swing.JPanel {
     
     public int squareHeight() {
         return getHeight() / Board.NUM_ROWS;
+    }
+    
+    public void setLevel(String level){
+        switch (level) {
+            case "Easy":
+                this.delay = 200;
+                break;
+            case "Normal":
+                this.delay = 150;
+                break;
+            case "Hard":
+                this.delay = 100;
+                break;
+            default:
+                this.delay = 200;
+                break;
+        }
     }
 
 

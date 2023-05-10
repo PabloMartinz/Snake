@@ -25,12 +25,13 @@ public class Scoreboard extends javax.swing.JPanel implements Incrementer, GetSc
     public void resetScore() {
         score = 0;
         labelScore.setText("Score: 0");
-        labelName.setText(" Name: Pablo");
+        labelName.setText(" Name: " + ConfigData.instance.getName());
+        labelLevel.setText("Level: " + ConfigData.instance.getLevel());
     }
     
     public void incrementScore(int increment) {
         score += increment;
-        labelScore.setText("" + score);
+        labelScore.setText("Score: " + score);
     }
 
     /**
@@ -43,12 +44,16 @@ public class Scoreboard extends javax.swing.JPanel implements Incrementer, GetSc
     private void initComponents() {
 
         labelName = new javax.swing.JLabel();
+        labelLevel = new javax.swing.JLabel();
         labelScore = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 102, 255));
 
-        labelName.setText("name");
+        labelName.setText("Name");
         add(labelName);
+
+        labelLevel.setText("Level");
+        add(labelLevel);
 
         labelScore.setText("Score");
         add(labelScore);
@@ -56,6 +61,7 @@ public class Scoreboard extends javax.swing.JPanel implements Incrementer, GetSc
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel labelLevel;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelScore;
     // End of variables declaration//GEN-END:variables

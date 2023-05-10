@@ -9,14 +9,17 @@ package com.mycompany.snake;
  * @author alu10772822
  */
 public class Game extends javax.swing.JFrame {
-
+    
+    private static ConfigDialog dialog;
     /**
      * Creates new form Game
      */
     public Game() {
         initComponents();
-        board1.setIncrementer(scoreboard1);
-        board1.initGame();
+        board.setLevel(ConfigData.instance.getLevel());
+        board.setIncrementer(scoreboard);
+        board.initGame();
+        board.pauseGame();
     }
 
     /**
@@ -28,27 +31,81 @@ public class Game extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        scoreboard1 = new com.mycompany.snake.Scoreboard();
-        board1 = new com.mycompany.snake.Board();
+        scoreboard = new com.mycompany.snake.Scoreboard();
+        board = new com.mycompany.snake.Board();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItemInitGame = new javax.swing.JMenuItem();
+        jMenuItemRestart = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItemConfig = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().add(scoreboard1, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(scoreboard, java.awt.BorderLayout.PAGE_END);
 
-        javax.swing.GroupLayout board1Layout = new javax.swing.GroupLayout(board1);
-        board1.setLayout(board1Layout);
-        board1Layout.setHorizontalGroup(
-            board1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 512, Short.MAX_VALUE)
+        javax.swing.GroupLayout boardLayout = new javax.swing.GroupLayout(board);
+        board.setLayout(boardLayout);
+        boardLayout.setHorizontalGroup(
+            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 453, Short.MAX_VALUE)
         );
-        board1Layout.setVerticalGroup(
-            board1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
+        boardLayout.setVerticalGroup(
+            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
-        getContentPane().add(board1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(board, java.awt.BorderLayout.CENTER);
+
+        jMenu1.setText("File");
+
+        jMenuItemInitGame.setText("Init game");
+        jMenuItemInitGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemInitGameActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemInitGame);
+
+        jMenuItemRestart.setText("Restart game");
+        jMenuItemRestart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRestartActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemRestart);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+
+        jMenuItemConfig.setText("Configuration");
+        jMenuItemConfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConfigActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemConfig);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConfigActionPerformed
+        dialog = new ConfigDialog(this, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jMenuItemConfigActionPerformed
+
+    private void jMenuItemRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRestartActionPerformed
+        
+    }//GEN-LAST:event_jMenuItemRestartActionPerformed
+
+    private void jMenuItemInitGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInitGameActionPerformed
+        board.initGame();
+        scoreboard.resetScore();
+    }//GEN-LAST:event_jMenuItemInitGameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,7 +143,13 @@ public class Game extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.snake.Board board1;
-    private com.mycompany.snake.Scoreboard scoreboard1;
+    private com.mycompany.snake.Board board;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemConfig;
+    private javax.swing.JMenuItem jMenuItemInitGame;
+    private javax.swing.JMenuItem jMenuItemRestart;
+    private com.mycompany.snake.Scoreboard scoreboard;
     // End of variables declaration//GEN-END:variables
 }
