@@ -16,7 +16,6 @@ public class Game extends javax.swing.JFrame {
      */
     public Game() {
         initComponents();
-        board.setLevel(ConfigData.instance.getLevel());
         board.setIncrementer(scoreboard);
         board.initGame();
         board.pauseGame();

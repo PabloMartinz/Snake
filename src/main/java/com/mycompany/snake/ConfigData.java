@@ -11,13 +11,36 @@ package com.mycompany.snake;
 public class ConfigData {
     private String level;
     private String name;
+    private int delay;
     
     public static ConfigData instance = new ConfigData();
     
     private ConfigData() {
-        level = "Easy";
+        level = "";
         name = "No Name";
               
+    }
+    
+    public int getDelay() {
+       
+        switch (level) {
+            case "Easy":
+                this.delay = 200;
+                break;
+            case "Normal":
+                this.delay = 150;
+                break;
+            case "Hard":
+                this.delay = 100;
+                break;
+            case "Secret":
+                this.delay = 50;
+                break;
+            default:
+                this.delay = 200;
+        }
+        return delay;
+    
     }
     
     public void setLevel(int level) {

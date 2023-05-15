@@ -86,7 +86,7 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     }
     
     public void initGame(){
-        timer.setDelay(delay);
+        timer.setDelay(ConfigData.instance.getDelay());
         timer.start();
     }
     
@@ -162,22 +162,7 @@ public class Board extends javax.swing.JPanel implements InitGamer{
         return getHeight() / Board.NUM_ROWS;
     }
     
-    public void setLevel(String level){
-        switch (level) {
-            case "Easy":
-                this.delay = 200;
-                break;
-            case "Normal":
-                this.delay = 150;
-                break;
-            case "Hard":
-                this.delay = 100;
-                break;
-            default:
-                this.delay = 200;
-                break;
-        }
-    }
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
