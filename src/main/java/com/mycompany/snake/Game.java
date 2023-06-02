@@ -41,18 +41,6 @@ public class Game extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(scoreboard, java.awt.BorderLayout.PAGE_END);
-
-        javax.swing.GroupLayout boardLayout = new javax.swing.GroupLayout(board);
-        board.setLayout(boardLayout);
-        boardLayout.setHorizontalGroup(
-            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
-        );
-        boardLayout.setVerticalGroup(
-            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-
         getContentPane().add(board, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("File");

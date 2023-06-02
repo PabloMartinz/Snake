@@ -5,11 +5,13 @@
 package com.mycompany.snake;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 /**
@@ -55,16 +57,17 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     private void initComponents() {
 
         setBackground(new java.awt.Color(204, 204, 204));
+        setOpaque(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 465, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -92,9 +95,11 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
+        paintBackground(g);
         snake.paintSnake(g, squareWidth(), squareHeight());      
         food.paintFood(g, food, squareWidth(), squareHeight(), snake);
         Toolkit.getDefaultToolkit().sync();
+        
     }
     
     private void tick(){
@@ -119,6 +124,12 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     
     public void pauseGame(){
         timer.stop();
+    }
+
+    private void paintBackground(Graphics g) {
+        Image img = new ImageIcon(getClass().
+                getResource("/images/fondo.jpg")).getImage();
+        g.drawImage(img, 0, 0, null);
     }
 
     

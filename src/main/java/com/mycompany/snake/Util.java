@@ -14,6 +14,9 @@ import java.awt.Graphics;
 public class Util {
 
     public static void drawSquare(Graphics g, int row, int col, int squareWidth, int squareHeight, SquareType squareType){
+        if (squareType == SquareType.FOOD || squareType == SquareType.SPECIALFOOD) {
+            
+        }
         Color colors[] = {new Color(0, 255, 0),new Color(0, 128, 255), new Color(226,29,29), new Color(239,218,4)};
         int x = col * squareWidth;
         int y = row * squareHeight;
