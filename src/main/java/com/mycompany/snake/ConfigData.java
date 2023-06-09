@@ -33,8 +33,11 @@ public class ConfigData {
             case "Hard":
                 this.delay = 100;
                 break;
+            case "Pro":
+                this.delay = 100;
+                break;
             case "Secret":
-                this.delay = 50;
+                this.delay = 150;
                 break;
             default:
                 this.delay = 200;

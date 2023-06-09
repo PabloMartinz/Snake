@@ -29,7 +29,7 @@ public class ConfigDialog extends javax.swing.JDialog {
 
         jlabLevel = new javax.swing.JLabel();
         comboLevel = new javax.swing.JComboBox<>();
-        jbuttonStart = new javax.swing.JButton();
+        jbuttonAccept = new javax.swing.JButton();
         jlabName = new javax.swing.JLabel();
         jtextfieldName = new javax.swing.JTextField();
 
@@ -38,7 +38,7 @@ public class ConfigDialog extends javax.swing.JDialog {
         jlabLevel.setText("Level:");
         jlabLevel.setAlignmentX(0.5F);
 
-        comboLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Easy", "Normal", "Hard", "Secret" }));
+        comboLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Easy", "Normal", "Hard", "Pro", "Secret" }));
         comboLevel.setToolTipText("");
         comboLevel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,10 +46,10 @@ public class ConfigDialog extends javax.swing.JDialog {
             }
         });
 
-        jbuttonStart.setText("Start Game");
-        jbuttonStart.addActionListener(new java.awt.event.ActionListener() {
+        jbuttonAccept.setText("Confirm");
+        jbuttonAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbuttonStartActionPerformed(evt);
+                jbuttonAcceptActionPerformed(evt);
             }
         });
 
@@ -72,7 +72,7 @@ public class ConfigDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbuttonStart)
+                .addComponent(jbuttonAccept)
                 .addGap(47, 47, 47))
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
@@ -97,7 +97,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                     .addComponent(jlabName)
                     .addComponent(jtextfieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(jbuttonStart)
+                .addComponent(jbuttonAccept)
                 .addGap(42, 42, 42))
         );
 
@@ -108,9 +108,9 @@ public class ConfigDialog extends javax.swing.JDialog {
         ConfigData.instance.setLevel(comboLevel.getSelectedIndex());
     }//GEN-LAST:event_comboLevelActionPerformed
 
-    private void jbuttonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonStartActionPerformed
+    private void jbuttonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonAcceptActionPerformed
         dispose();
-    }//GEN-LAST:event_jbuttonStartActionPerformed
+    }//GEN-LAST:event_jbuttonAcceptActionPerformed
 
     private void jtextfieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtextfieldNameActionPerformed
         
@@ -164,7 +164,7 @@ public class ConfigDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboLevel;
-    private javax.swing.JButton jbuttonStart;
+    private javax.swing.JButton jbuttonAccept;
     private javax.swing.JLabel jlabLevel;
     private javax.swing.JLabel jlabName;
     private javax.swing.JTextField jtextfieldName;

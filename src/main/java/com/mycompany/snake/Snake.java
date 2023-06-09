@@ -46,8 +46,10 @@ public class Snake {
             if(i == 0){
                 Util.drawSquare(g, currentNode.getRow(), currentNode.getCol(), squareWidth, squareHeight, SquareType.HEAD);
 
-            } else{
+            } else if(i < nodes.size()-1){
                 Util.drawSquare(g, currentNode.getRow(), currentNode.getCol(), squareWidth, squareHeight, SquareType.BODY);
+            } else{
+                Util.drawSquare(g, currentNode.getRow(), currentNode.getCol(), squareWidth, squareHeight, SquareType.TAIL);
             }
         }
     }
