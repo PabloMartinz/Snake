@@ -10,15 +10,17 @@ package com.mycompany.snake;
  */
 public class Game extends javax.swing.JFrame {
     
-    private static ConfigDialog dialog;
+    private static ConfigDialog configDialog;
+    private static AboutDialog aboutDialog;
+    private static Game game;
     /**
      * Creates new form Game
      */
     public Game() {
         initComponents();
         board.setIncrementer(scoreboard);
-        board.initGame();
-        board.pauseGame();
+        //board.initGame();
+        //board.pauseGame();
     }
 
     /**
@@ -38,6 +40,8 @@ public class Game extends javax.swing.JFrame {
         jMenuItemRestart = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItemConfig = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jmenuItemInfo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(scoreboard, java.awt.BorderLayout.PAGE_END);
@@ -75,24 +79,40 @@ public class Game extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("About");
+
+        jmenuItemInfo.setText("Info");
+        jmenuItemInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenuItemInfoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmenuItemInfo);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConfigActionPerformed
-        dialog = new ConfigDialog(this, true);
-        dialog.setVisible(true);
+         game.launchConfig(game);
     }//GEN-LAST:event_jMenuItemConfigActionPerformed
 
     private void jMenuItemRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRestartActionPerformed
-        
+        restartGame();
     }//GEN-LAST:event_jMenuItemRestartActionPerformed
 
     private void jMenuItemInitGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInitGameActionPerformed
         board.initGame();
         scoreboard.resetScore();
     }//GEN-LAST:event_jMenuItemInitGameActionPerformed
+
+    private void jmenuItemInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuItemInfoActionPerformed
+        aboutDialog = new AboutDialog(this, true);
+        aboutDialog.setVisible(true);
+    }//GEN-LAST:event_jmenuItemInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,23 +140,47 @@ public class Game extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Game().setVisible(true);
+                
+                game = new Game();
+                game.launchConfig(game);
+                
             }
         });
+    }
+    
+    private void launchConfig(Game game){
+        configDialog = new ConfigDialog(this, true);
+        configDialog.setGame(game);
+        configDialog.setVisible(true);
+        
+    }
+    private void restartGame() {
+        board.pauseGame(); // Detenemos el juego actual
+        board = new Board(); // Creamos una nueva instancia del tablero
+        board.setIncrementer(scoreboard); // Configuramos el incrementer del nuevo tablero
+        getContentPane().remove(1); // Eliminamos el tablero actual del JFrame
+        getContentPane().add(board, java.awt.BorderLayout.CENTER); // Agregamos el nuevo tablero al JFrame
+        pack(); // Ajustamos el tamaño del JFrame para que se ajuste al nuevo tablero
+        board.initGame(); // Iniciamos el nuevo juego
+        scoreboard.resetScore(); // Reiniciamos el puntaje
+        requestFocus(); // Solicitamos el enfoque al nuevo tablero para capturar los eventos de teclado
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.mycompany.snake.Board board;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemConfig;
     private javax.swing.JMenuItem jMenuItemInitGame;
     private javax.swing.JMenuItem jMenuItemRestart;
+    private javax.swing.JMenuItem jmenuItemInfo;
     private com.mycompany.snake.Scoreboard scoreboard;
     // End of variables declaration//GEN-END:variables
 }

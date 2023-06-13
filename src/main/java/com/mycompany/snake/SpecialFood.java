@@ -24,11 +24,11 @@ public class SpecialFood extends Food {
         setCol(col);
     }
     @Override
-    public void paintFood(Graphics g, Food food, int squareWidth, int squareHeight, Snake snake){
+    public void paintFood(Graphics g, Food food, int squareWidth, int squareHeight, Snake snake,String level){
         int row = food.getRow();
         int col = food.getCol();
         
-        Util.drawSquare(g, row, col, squareWidth, squareHeight, SquareType.SPECIALFOOD);
+        Util.drawSquare(g, row, col, squareWidth, squareHeight, SquareType.SPECIALFOOD,level);
     }
     
     @Override

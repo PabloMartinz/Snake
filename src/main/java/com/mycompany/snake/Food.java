@@ -24,11 +24,11 @@ public class Food extends Node {
         setCol(col);
     }
     
-    public void paintFood(Graphics g, Food food, int squareWidth, int squareHeight, Snake snake){
+    public void paintFood(Graphics g, Food food, int squareWidth, int squareHeight, Snake snake,String level){
         int row = food.getRow();
         int col = food.getCol();
         
-        Util.drawSquare(g, row, col, squareWidth, squareHeight, SquareType.FOOD);
+        Util.drawSquare(g, row, col, squareWidth, squareHeight, SquareType.FOOD,level);
     }
     
     

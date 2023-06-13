@@ -34,7 +34,7 @@ public class ConfigData {
                 this.delay = 100;
                 break;
             case "Pro":
-                this.delay = 100;
+                this.delay = 50;
                 break;
             case "Secret":
                 this.delay = 150;
@@ -57,7 +57,10 @@ public class ConfigData {
             case 2: 
                 this.level = "Hard";
                 break;
-            case 3:
+            case 3: 
+                this.level = "Pro";
+                break;
+            case 4:
                 this.level = "Secret";
                 break;
             default:

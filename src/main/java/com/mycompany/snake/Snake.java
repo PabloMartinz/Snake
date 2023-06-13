@@ -40,16 +40,16 @@ public class Snake {
     }
     
     
-    public void paintSnake(Graphics g,int squareWidth, int squareHeight){
+    public void paintSnake(Graphics g,int squareWidth, int squareHeight,String level){
         for(int i =0;i < nodes.size() ;i++){
             Node currentNode = nodes.get(i);
             if(i == 0){
-                Util.drawSquare(g, currentNode.getRow(), currentNode.getCol(), squareWidth, squareHeight, SquareType.HEAD);
+                Util.drawSquare(g, currentNode.getRow(), currentNode.getCol(), squareWidth, squareHeight, SquareType.HEAD, level);
 
             } else if(i < nodes.size()-1){
-                Util.drawSquare(g, currentNode.getRow(), currentNode.getCol(), squareWidth, squareHeight, SquareType.BODY);
+                Util.drawSquare(g, currentNode.getRow(), currentNode.getCol(), squareWidth, squareHeight, SquareType.BODY,level);
             } else{
-                Util.drawSquare(g, currentNode.getRow(), currentNode.getCol(), squareWidth, squareHeight, SquareType.TAIL);
+                Util.drawSquare(g, currentNode.getRow(), currentNode.getCol(), squareWidth, squareHeight, SquareType.TAIL,level);
             }
         }
     }

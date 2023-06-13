@@ -9,7 +9,7 @@ package com.mycompany.snake;
  * @author alu10772822
  */
 public class ConfigDialog extends javax.swing.JDialog {
-
+    private Game game;
     /**
      * Creates new form ConfigDialog
      */
@@ -109,6 +109,7 @@ public class ConfigDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_comboLevelActionPerformed
 
     private void jbuttonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonAcceptActionPerformed
+        game.setVisible(true);
         dispose();
     }//GEN-LAST:event_jbuttonAcceptActionPerformed
 
@@ -169,4 +170,9 @@ public class ConfigDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jlabName;
     private javax.swing.JTextField jtextfieldName;
     // End of variables declaration//GEN-END:variables
+
+    public void setGame(Game game) {
+        this.game = game;
+        
+    }
 }

@@ -96,8 +96,8 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         paintBackground(g);
-        snake.paintSnake(g, squareWidth(), squareHeight());      
-        food.paintFood(g, food, squareWidth(), squareHeight(), snake);
+        snake.paintSnake(g, squareWidth(), squareHeight(),ConfigData.instance.getLevel());      
+        food.paintFood(g, food, squareWidth(), squareHeight(), snake,ConfigData.instance.getLevel());
         Toolkit.getDefaultToolkit().sync();
         
     }
